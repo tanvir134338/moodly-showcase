@@ -24,3 +24,370 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* =================================
+   ORBIT ROTATION
+================================= */
+
+.orbit-outer {
+  animation: orbit-clockwise 32s linear infinite;
+}
+
+.orbit-inner {
+  animation: orbit-clockwise 23s linear infinite;
+}
+
+.counter-outer {
+  animation: orbit-counter 32s linear infinite;
+}
+
+.counter-inner {
+  animation: orbit-counter 23s linear infinite;
+}
+
+@keyframes orbit-clockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-counter {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* =================================
+   PURPLE AMBIENT LIGHT
+================================= */
+
+.orbit-light {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  pointer-events: none;
+
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 235deg,
+    rgba(139, 92, 246, 0.08) 265deg,
+    rgba(139, 92, 246, 0.35) 285deg,
+    rgba(167, 139, 250, 0.85) 310deg,
+    rgba(192, 132, 252, 0.95) 320deg,
+    rgba(139, 92, 246, 0.4) 340deg,
+    transparent 360deg
+  );
+
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 15px),
+    #000 calc(100% - 10px),
+    #000 calc(100% - 5px),
+    transparent 100%
+  );
+
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 15px),
+    #000 calc(100% - 10px),
+    #000 calc(100% - 5px),
+    transparent 100%
+  );
+
+  filter: blur(9px);
+  opacity: 0.8;
+}
+
+.orbit-light-outer {
+  width: 98%;
+  height: 98%;
+  animation: purple-light-rotation 8s linear infinite;
+}
+
+.orbit-light-inner {
+  width: 76.4%;
+  height: 76.4%;
+  animation: purple-light-reverse 6s linear infinite;
+  opacity: 0.65;
+  filter: blur(11px);
+}
+
+@keyframes purple-light-rotation {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes purple-light-reverse {
+  from {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+/* =================================
+   DISCOVER NAVBAR
+================================= */
+
+.discover-navbar {
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+  transform: translateX(-50%);
+  width: 92%;
+  aspect-ratio: 392 / 54;
+  isolation: isolate;
+  z-index: 20;
+}
+
+.discover-navbar-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+}
+
+/* =================================
+   NAVBAR LIGHT SWEEP
+================================= */
+
+.discover-nav-light {
+  position: absolute;
+  top: 4%;
+  left: 0;
+  width: 81%;
+  height: 92%;
+  border-radius: 999px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.discover-nav-light::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -35%;
+  width: 35%;
+  height: 100%;
+  border-radius: 999px;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(151, 93, 255, 0.15) 20%,
+    rgba(190, 145, 255, 0.8) 55%,
+    rgba(205, 170, 255, 0.95) 70%,
+    transparent 100%
+  );
+
+  filter: blur(5px);
+  animation: nav-light-move 5.5s ease-in-out infinite;
+}
+
+@keyframes nav-light-move {
+  0% {
+    left: -35%;
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  72% {
+    left: 110%;
+    opacity: 1;
+  }
+
+  78% {
+    left: 110%;
+    opacity: 0;
+  }
+
+  100% {
+    left: 110%;
+    opacity: 0;
+  }
+}
+
+/* =================================
+   AI BUTTON - SEQUENTIAL BLINK
+================================= */
+
+.discover-ai-glow {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 14%;
+  height: 100%;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(153, 92, 255, 0.85) 0%,
+    rgba(153, 92, 255, 0.45) 35%,
+    rgba(153, 92, 255, 0.12) 65%,
+    transparent 80%
+  );
+
+  filter: blur(8px);
+  z-index: 1;
+  pointer-events: none;
+  animation: ai-button-blink 5.5s ease-in-out infinite;
+}
+
+@keyframes ai-button-blink {
+  0%,
+  77% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  82% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+
+  86% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+
+  91%,
+  100% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+
+/* =================================
+   DISCOVER BANNER ARTWORK
+================================= */
+
+.discover-banner-art {
+  position: absolute;
+  left: 5.5%;
+  top: 22%;
+  width: 89%;
+  height: 18%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.discover-banner-art > div {
+  position: absolute;
+}
+
+/* Main Artwork: Card + Rings + Heart */
+.banner-main-art {
+  left: 59%;
+  top: 33%;
+  width: 34%;
+  height: 40%;
+  z-index: 3;
+}
+
+/* Dashed Trail */
+.banner-trail {
+  left: 81%;
+  top: 36%;
+  width: 11%;
+  height: 10%;
+  z-index: 2;
+}
+
+/* Paper Plane */
+.banner-paper-plane {
+  left: 85%;
+  top: 31%;
+  width: 8%;
+  height: 15%;
+  z-index: 6;
+}
+
+/* Small Floating Sparkle */
+.banner-left-sparkle {
+  left: 66%;
+  top: 32%;
+  width: 4%;
+  height: 8%;
+  z-index: 5;
+}
+
+/* Top Sparkle */
+.banner-top-sparkle {
+  left: 69%;
+  top: 25%;
+  width: 3%;
+  height: 6%;
+  z-index: 5;
+}
+
+/* LEFT STAR TILE */
+.banner-tile-sparkle {
+  left: 60%;
+  top: 43%;
+  width: 8%;
+  height: 16%;
+  z-index: 6;
+}
+
+/* People Tile - Bottom Left */
+.banner-tile-people {
+  left: 62%;
+  top: 61%;
+  width: 7%;
+  height: 14%;
+  z-index: 6;
+}
+
+/* Palette Tile - Right */
+.banner-tile-palette {
+  left: 85%;
+  top: 48%;
+  width: 9%;
+  height: 17%;
+  z-index: 6;
+}
+
+/* Bottom Sparkle */
+.banner-bottom-sparkle {
+  left: 87%;
+  top: 70%;
+  width: 4%;
+  height: 7%;
+  z-index: 5;
+}
+
+/* =================================
+   ACCESSIBILITY
+================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-outer,
+  .orbit-inner,
+  .counter-outer,
+  .counter-inner,
+  .orbit-light-outer,
+  .orbit-light-inner,
+  .discover-nav-light::after,
+  .discover-ai-glow {
+    animation: none;
+  }
+}
